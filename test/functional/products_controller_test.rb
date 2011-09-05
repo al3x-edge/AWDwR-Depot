@@ -2,7 +2,7 @@ require 'test_helper'
 
 class ProductsControllerTest < ActionController::TestCase
   setup do
-    @product = products(:one)
+    @product = Fabricate(:product, :title => "this is longer than 10", :description => 'Wibbles are fun!', :image_url => 'lorem.jpg', :price => 19.95)
     @update = Fabricate.build(:product, :title => "Lorem Ipsum", :description => 'Wibbles are fun!', :image_url => 'lorem.jpg', :price => 19.95)
   end
 
@@ -19,7 +19,7 @@ class ProductsControllerTest < ActionController::TestCase
 
   test "should create product" do
     assert_difference('Product.count') do
-      post :create, product: @product.attributes
+      post :create, product: Fabricate.build(:product).attributes
     end
 
     assert_redirected_to product_path(assigns(:product))
