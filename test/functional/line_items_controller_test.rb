@@ -18,7 +18,7 @@ class LineItemsControllerTest < ActionController::TestCase
 
   test "should create line_item" do
     assert_difference('LineItem.count') do
-      post :create, product_id: Fabricate(:product).id
+      post :create, product_id: Fabricate(:product, :title=>"this is longer than 10 characters").id
     end
 
     assert_redirected_to cart_path(assigns(:line_item).cart)
